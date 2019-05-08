@@ -1,0 +1,6 @@
+export default {
+  SET_CORD_X: 'SET_CORD_X',
+  SET_CORD_Y: 'SET_CORD_Y',
+  ADD_POINTS: 'ADD_POINTS',
+  CLEAR_POINTS: 'CLEAR_POINTS'
+};
