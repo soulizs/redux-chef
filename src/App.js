@@ -5,9 +5,6 @@ import { connect } from 'react-redux';
 import { setCordX, setCordY, addPoints, clearPoints } from './actions/index.ts';
 import models from './models/index.ts';
 
-const { Cord } = models;
-console.log(models);
-
 function generateRandNum() {
   return (Math.random() * 100).toFixed(0);
 }
@@ -19,6 +16,14 @@ function Button(props) {
       {children}
     </span>
   )
+}
+
+function updateCord() {
+  models.Cord.update(generateRandNum(), generateRandNum())
+}
+
+function setDoubleCordX() {
+  models.Cord.setDoubleX();
 }
 
 class App extends React.Component {
@@ -35,8 +40,8 @@ class App extends React.Component {
           <div className="button-list">
             <Button onClick={() => setCordX(generateRandNum())}>set cord x</Button>
             <Button onClick={() => setCordY(generateRandNum())}>set cord y</Button>
-            <Button onClick={() => Cord.update(generateRandNum(), generateRandNum())}>update cord x & y</Button>
-            <Button onClick={() => Cord.setDoubleX()}>double cord x</Button>
+            <Button onClick={updateCord}>update cord x & y</Button>
+            <Button onClick={setDoubleCordX}>double cord x</Button>
             <Button onClick={() =>
               addPoints({
                 x: generateRandNum(),

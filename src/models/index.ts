@@ -48,19 +48,4 @@ const Points = {
   }
 };
 
-const Points2 = {
-  namespace: 'points',
-  state: [],
-  reducer: function (state: any, action: any) {
-    switch (action.type) {
-      case constants.ADD_POINTS:
-        return state.concat(action.point);
-      case constants.CLEAR_POINTS:
-        return [];
-      default:
-        return state;
-    }
-  }
-};
-
-export default kitchen({ Cord, Points, Points2 });
+export default kitchen({ Cord, Points });
