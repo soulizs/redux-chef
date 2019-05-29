@@ -2,8 +2,11 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import { setCordX, setCordY, addPoints, clearPoints } from './actions';
-import { Cord } from './models';
+import { setCordX, setCordY, addPoints, clearPoints } from './actions/index.ts';
+import models from './models/index.ts';
+
+const { Cord } = models;
+console.log(models);
 
 function generateRandNum() {
   return (Math.random() * 100).toFixed(0);

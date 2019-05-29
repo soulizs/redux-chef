@@ -1,21 +1,21 @@
 import constants from '../constants';
-import { cook, kitchen } from '../redux-chef/index.ts';
+import { kitchen } from '../redux-chef';
 
-export const Cord = cook({
+const Cord = {
   namespace: 'cord',
   state: { x: 3, y: 4 },
   action: {
-    update(x, y) {
+    update(x: number, y: number) {
       return { x, y };
     },
-    setDoubleX: () => state => {
+    setDoubleX: () => (state: any) => {
       return {
         ...state,
         x: state.x * 2
       }
     }
   },
-  reducer: function(state, action) {
+  reducer: function (state: any, action: any) {
     switch (action.type) {
       case constants.SET_CORD_X:
         return {
@@ -31,12 +31,12 @@ export const Cord = cook({
         return state;
     }
   }
-});
+};
 
-export const Points = {
+const Points = {
   namespace: 'points',
   state: [],
-  reducer: function(state, action) {
+  reducer: function (state: any, action: any) {
     switch (action.type) {
       case constants.ADD_POINTS:
         return state.concat(action.point);
@@ -48,4 +48,4 @@ export const Points = {
   }
 };
 
-export default [Cord, Points];
+export default kitchen({ Cord, Points });

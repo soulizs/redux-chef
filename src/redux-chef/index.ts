@@ -1,5 +1,4 @@
-import { ChefModel, Actions, Reducer, Reducers, State, Meal } from './type';
-import { warn } from './util';
+import { ChefModel, ChefModelMap, Actions, Reducer, Reducers, State, Meal } from './type';
 
 const __CHEF_INTERNAL_TYPE__ = '__CHEF_INTERNAL_TYPE__';
 const generateChefInternalType = (name: string): string =>
@@ -18,12 +17,14 @@ function internalReducer(state: any, action: any) {
   }
 }
 
-function Chef(models: ChefModel[]): Meal {
+function Chef(models: ChefModelMap): Meal {
   const preloadState: State = {};
   const reducers: Reducers = {};
+  const modelNames = Object.keys(models);
   let namespaces: string[] = [];
 
-  models.forEach(model => {
+  modelNames.forEach(name => {
+    const model = models[name];
     const { namespace, state, reducer } = model;
     if (namespaces.includes(namespace)) {
       warn(`This namespace(${namespace}) will be ignore.`);
@@ -57,7 +58,7 @@ export function dispatch(action: any) {
 }
 
 export function cook(model: ChefModel): ChefModel {
-  const { namespace, action } = model;
+  const { namespace, action = {} } = model;
   const observedKeys = Object.keys(action);
   const observedActions: Actions = {};
 
@@ -87,8 +88,22 @@ export function cook(model: ChefModel): ChefModel {
   }
 }
 
-export function kitchen(models: ChefModel[]): ChefModel[] {
-  return models.map(cook);
+export function kitchen(models: ChefModel[] | ChefModelMap): ChefModel[] | ChefModelMap {
+  if(Array.isArray(models)) {
+    return (models as ChefModel[]).map(cook);
+  }
+  if(Object.prototype.toString.call(models).match(/Object/)) {
+    const keys = Object.keys(models);
+    keys.forEach(key => {
+      models[key] = cook(models[key]);
+    });
+    return models as ChefModelMap;
+  }
+  throw new Error('Kitchen can only cook Array of models or models\' map.');
+}
+
+function warn(msg: string) {
+  console.warn(`redux-chef: ${msg}`);
 }
 
 Chef.apply = (store: any) => {

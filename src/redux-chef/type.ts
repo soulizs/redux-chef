@@ -21,9 +21,12 @@ export interface State {
 export interface ChefModel {
   namespace: string;
   state: any;
-  action: Actions;
+  action?: Actions;
   reducer: Reducer<any>;
-  hooks: Array<Function>;
+}
+
+export interface ChefModelMap {
+  [key: string]: ChefModel
 }
 
 export interface Meal {

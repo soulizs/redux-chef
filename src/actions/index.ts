@@ -1,21 +1,21 @@
 import constants from '../constants';
-import { dispatch } from '../redux-chef/index.ts';
+import { dispatch } from '../redux-chef';
 
-export function setCordX(x) {
+export function setCordX(x: number) {
   dispatch({
     type: constants.SET_CORD_X,
     x
   });
 }
 
-export function setCordY(y) {
+export function setCordY(y: number) {
   dispatch({
     type: constants.SET_CORD_Y,
     y
   });
 }
 
-export function addPoints(point) {
+export function addPoints(point: number) {
   dispatch({
     type: constants.ADD_POINTS,
     point
