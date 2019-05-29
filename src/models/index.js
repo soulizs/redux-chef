@@ -1,5 +1,5 @@
 import constants from '../constants';
-import { cook } from '../redux-chef';
+import { cook } from '../redux-chef/index.ts';
 
 export const Cord = cook({
   namespace: 'cord',

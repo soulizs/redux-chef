@@ -1,5 +1,5 @@
 import constants from '../constants';
-import { dispatch } from '../redux-chef';
+import { dispatch } from '../redux-chef/index.ts';
 
 export function setCordX(x) {
   dispatch({

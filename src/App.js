@@ -6,7 +6,7 @@ import { setCordX, setCordY, addPoints, clearPoints } from './actions';
 import { Cord } from './models';
 
 function randNum() {
-  return (Math.random() * 100).toFixed(0)
+  return (Math.random() * 100).toFixed(0);
 }
 
 class App extends React.Component {
@@ -20,55 +20,53 @@ class App extends React.Component {
 
           <code>{JSON.stringify(this.props.points, null, 2)}</code>
 
-          <span className="App-link" onClick={() => setCordX(randNum())}>
-            setCordX
-          </span>
+          <div className="button-list">
+            <span className="btn-dispatch" onClick={() => setCordX(randNum())}>
+              setCordX
+            </span>
 
-          <span className="App-link" onClick={() => setCordY(randNum())}>
-            setCordY
-          </span>
+            <span className="btn-dispatch" onClick={() => setCordY(randNum())}>
+              setCordY
+            </span>
 
-          <span
-            className="App-link"
-            onClick={() => {
-              Cord.update(randNum(), randNum());
-              // Cord.action.update()
-            }}
-          >
-            Cord Update
-          </span>
+            <span
+              className="btn-dispatch"
+              onClick={() => {
+                Cord.update(randNum(), randNum());
+              }}
+            >
+              Cord Update
+            </span>
 
+            <span
+              className="btn-dispatch"
+              onClick={() => {
+                Cord.setDoubleX();
+              }}
+            >
+              Cord setDoubleX
+            </span>
 
-          <span
-            className="App-link"
-            onClick={() => {
-              Cord.setDoubleX();
-            }}
-          >
-            Cord setDoubleX
-          </span>
+            <span
+              className="btn-dispatch"
+              onClick={() =>
+                addPoints({
+                  x: randNum(),
+                  y: randNum()
+                })
+              }
+            >
+              addPoints
+            </span>
 
-          <span
-            className="App-link"
-            onClick={() =>
-              addPoints({
-                x: randNum(),
-                y: randNum()
-              })
-            }
-          >
-            addPoints
-          </span>
-
-          <span className="App-link" onClick={clearPoints}>
-            clearPoints
-          </span>
+            <span className="btn-dispatch" onClick={clearPoints}>
+              clearPoints
+            </span>
+          </div>
         </header>
       </div>
     );
   }
 }
 
-export default connect(
-  state => state
-)(App);
+export default connect(state => state)(App);
