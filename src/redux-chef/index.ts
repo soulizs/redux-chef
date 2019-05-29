@@ -22,12 +22,12 @@ function Chef(models: ChefModelMap): Meal {
   const reducers: Reducers = {};
   const modelNames = Object.keys(models);
   let namespaces: string[] = [];
-
+  console.log('jell')
   modelNames.forEach(name => {
     const model = models[name];
     const { namespace, state, reducer } = model;
     if (namespaces.includes(namespace)) {
-      warn(`This namespace(${namespace}) will be ignore.`);
+      warn(`${name}'s namespace -> \`${namespace}\` will be ignore.`);
     } else {
       preloadState[namespace] = state;
       reducers[namespace] = reducer;
@@ -99,7 +99,7 @@ export function kitchen(models: ChefModel[] | ChefModelMap): ChefModel[] | ChefM
     });
     return models as ChefModelMap;
   }
-  throw new Error('Kitchen can only cook Array of models or models\' map.');
+  throw new Error('Kitchen can only cook array of models or models\' map.');
 }
 
 function warn(msg: string) {
