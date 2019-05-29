@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { setCordX, setCordY, addPoints, clearPoints } from './actions';
 import { Cord } from './models';
 
-function randNum() {
+function generateRandNum() {
   return (Math.random() * 100).toFixed(0);
 }
 
@@ -16,23 +16,23 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
 
-          <code>{JSON.stringify(this.props.cord, null, 2)}</code>
+          <code>{JSON.stringify(this.props.cord)}</code>
 
-          <code>{JSON.stringify(this.props.points, null, 2)}</code>
+          <code>{JSON.stringify(this.props.points)}</code>
 
           <div className="button-list">
-            <span className="btn-dispatch" onClick={() => setCordX(randNum())}>
+            <span className="btn-dispatch" onClick={() => setCordX(generateRandNum())}>
               setCordX
             </span>
 
-            <span className="btn-dispatch" onClick={() => setCordY(randNum())}>
+            <span className="btn-dispatch" onClick={() => setCordY(generateRandNum())}>
               setCordY
             </span>
 
             <span
               className="btn-dispatch"
               onClick={() => {
-                Cord.update(randNum(), randNum());
+                Cord.update(generateRandNum(), generateRandNum());
               }}
             >
               Cord Update
@@ -51,8 +51,8 @@ class App extends React.Component {
               className="btn-dispatch"
               onClick={() =>
                 addPoints({
-                  x: randNum(),
-                  y: randNum()
+                  x: generateRandNum(),
+                  y: generateRandNum()
                 })
               }
             >

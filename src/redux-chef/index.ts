@@ -38,7 +38,6 @@ function Chef(models: ChefModel[]): Meal {
     const ownState = Object.assign({}, state);
     
     namespaces.forEach(ns => {
-      console.log(ownState[ns], ns);
       ownState[ns] = reducers[ns](ownState[ns], action);
     });
 

@@ -10,7 +10,7 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-// console.log(Chef(models));
+console.log(Chef(models));
 
 Chef.apply(store);
 
