@@ -4,7 +4,7 @@ let store$;
 let namespace$;
 
 function internalReducer(state, action) {
-  if (action.type === __CHEF_INTERNAL_TYPE__) {
+  if (action.type.includes(__CHEF_INTERNAL_TYPE__)) {
     return {
       ...state,
       [namespace$]: action.data
@@ -66,7 +66,7 @@ export function cook(model) {
         data = data(store$.getState()[namespace]);
       }
       store$.dispatch({
-        type: __CHEF_INTERNAL_TYPE__,
+        type: __CHEF_INTERNAL_TYPE__ + `(${key})`,
         data
       });
       namespace$ = '';

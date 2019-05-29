@@ -16,9 +16,9 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
 
-          {JSON.stringify(this.props.cord, null, 4)}
+          <code>{JSON.stringify(this.props.cord, null, 2)}</code>
 
-          {JSON.stringify(this.props.points, null, 4)}
+          <code>{JSON.stringify(this.props.points, null, 2)}</code>
 
           <span className="App-link" onClick={() => setCordX(randNum())}>
             setCordX
@@ -32,6 +32,7 @@ class App extends React.Component {
             className="App-link"
             onClick={() => {
               Cord.update(randNum(), randNum());
+              // Cord.action.update()
             }}
           >
             Cord Update
@@ -69,6 +70,5 @@ class App extends React.Component {
 }
 
 export default connect(
-  state => state,
-  null
+  state => state
 )(App);

@@ -8,7 +8,7 @@ export const Cord = cook({
     update(x, y) {
       return { x, y };
     },
-    setDoubleX: x => state => {
+    setDoubleX: () => state => {
       return {
         ...state,
         x: state.x * 2
