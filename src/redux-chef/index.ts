@@ -87,6 +87,10 @@ export function cook(model: ChefModel): ChefModel {
   }
 }
 
+export function kitchen(models: ChefModel[]): ChefModel[] {
+  return models.map(cook);
+}
+
 Chef.apply = (store: any) => {
   store$ = store;
 }

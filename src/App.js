@@ -9,6 +9,15 @@ function generateRandNum() {
   return (Math.random() * 100).toFixed(0);
 }
 
+function Button(props) {
+  const { children, onClick } = props;
+  return (
+    <span className="btn-dispatch" onClick={onClick}>
+      {children}
+    </span>
+  )
+}
+
 class App extends React.Component {
   render() {
     return (
@@ -21,47 +30,17 @@ class App extends React.Component {
           <code>{JSON.stringify(this.props.points)}</code>
 
           <div className="button-list">
-            <span className="btn-dispatch" onClick={() => setCordX(generateRandNum())}>
-              setCordX
-            </span>
-
-            <span className="btn-dispatch" onClick={() => setCordY(generateRandNum())}>
-              setCordY
-            </span>
-
-            <span
-              className="btn-dispatch"
-              onClick={() => {
-                Cord.update(generateRandNum(), generateRandNum());
-              }}
-            >
-              Cord Update
-            </span>
-
-            <span
-              className="btn-dispatch"
-              onClick={() => {
-                Cord.setDoubleX();
-              }}
-            >
-              Cord setDoubleX
-            </span>
-
-            <span
-              className="btn-dispatch"
-              onClick={() =>
-                addPoints({
-                  x: generateRandNum(),
-                  y: generateRandNum()
-                })
-              }
-            >
-              addPoints
-            </span>
-
-            <span className="btn-dispatch" onClick={clearPoints}>
-              clearPoints
-            </span>
+            <Button onClick={() => setCordX(generateRandNum())}>set cord x</Button>
+            <Button onClick={() => setCordY(generateRandNum())}>set cord y</Button>
+            <Button onClick={() => Cord.update(generateRandNum(), generateRandNum())}>update cord x & y</Button>
+            <Button onClick={() => Cord.setDoubleX()}>double cord x</Button>
+            <Button onClick={() =>
+              addPoints({
+                x: generateRandNum(),
+                y: generateRandNum()
+              })
+            }>add points</Button>
+            <Button onClick={clearPoints}>clear points</Button>
           </div>
         </header>
       </div>
