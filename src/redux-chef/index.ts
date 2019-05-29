@@ -22,7 +22,7 @@ function Chef(models: ChefModelMap): Meal {
   const reducers: Reducers = {};
   const modelNames = Object.keys(models);
   let namespaces: string[] = [];
-  console.log('jell')
+
   modelNames.forEach(name => {
     const model = models[name];
     const { namespace, state, reducer } = model;
